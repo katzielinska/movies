@@ -45,7 +45,20 @@
 
 
 //the url is our endpoint and contains the data that we want to work with
-let url = 'http://www.omdbapi.com/?i=tt2278388&apikey=59e0530';
+let ids = [
+"tt5104604",
+"tt2278388",
+"tt0432283",
+"tt1748122",
+"tt0838221",
+"tt0362270",
+"tt0265666",
+"tt0128445",
+"tt0115734"
+]
+
+//http://www.omdbapi.com/?i=[id]&apikey=59e0530
+
 //TODO: copy/paste the link into a browser, so that you can see the data you are going to work with
 //The endpoint is passed into the call of the fetch function. The call of the fetch returns a promise
 fetch(url)
