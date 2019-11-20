@@ -5,6 +5,7 @@
     "build": "parcel build src/*.html"
   },
   "dependencies": {
+    "basiclightbox": "^5.0.2",
     "parcel-bundler": "^1.12.4",
     "sass": "^1.23.1"
   }

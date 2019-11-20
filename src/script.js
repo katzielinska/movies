@@ -16,7 +16,7 @@ var moviesJson = {
         },
         {
             "title": "Fantastic Mr. Fox",
-            "iytID": "n2igjYFojUo",
+            "ytID": "n2igjYFojUo",
             "id": "tt5104604"
         },
         {
@@ -66,7 +66,11 @@ var moviesJson = {
 //     "tt0115734"
 // ]
 
+
+
 let url = "http://www.omdbapi.com/?apikey=59e0530&t=";
+
+let yt = "https://www.youtube.com/watch?v=";
 
 let container = document.getElementById('movies-list');
 
@@ -75,6 +79,8 @@ let moviePage = document.getElementById('moviePage');
 for (let i = 0; i < moviesJson.movieList.length; i++) {
 
     let movieURL = url + moviesJson.movieList[i].title.replace(/( )/g, "+");
+
+    let ytURL = yt + moviesJson.movieList[i].ytID;
 
     //The endpoint is passed into the call of the fetch function. The call of the fetch returns a promise
 
@@ -93,30 +99,40 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
 
             container.innerHTML += `
             <article class="movie-card" >
+            <div class="movie-card-header" >
+            <div class ="movie-poster">
+            <span class="poster-fill">
+            <img src="${data.Poster}">
+            </span>
 
-            <div class = "movie-poster">
-            <span class="poster-fill>
+            <span class="poster-featured">
             <img src="${data.Poster}">
             </span>
-            <span class="poster-featured>
-            <img src="${data.Poster}">
-            </span>
+            </div>
+
+            <div class="trailer">
+            
+            
+            <button class="video" id="videoLink"><img src="images/play-button (2).svg"></button>
+            
+            </div>
             </div>
 
             <div class="movie-details">
+            
             <h1 class="title"> ${data.Title}</h1>
-            <ul>
-            <li class="movie-year">${data.Year}</li>
-            <li class="movie-genre">${data.Genre}</li>
-            </ul>
+            <p class="year"> ${data.Year}</p>
+            
             <p class="plot">${data.Plot} </p>
-            </div>
 
             <div class="movie-info"> 
             <p><strong>Directed by:</strong> ${data.Director}  </p>
-            <p><strong>Staring:</strong>${data.Actors} </p>
+            <p><strong>Starring: </strong>${data.Actors} </p>
             
             </div>
+            </div>
+
+            
             
             <div>
               
@@ -125,7 +141,13 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
           </a>
           </article>`
 
-         
+          document.querySelector('button.video').onclick = () => {
+
+            basicLightbox.create(`
+                <iframe width="560" height="315" src="${ytURL}" frameborder="0" allowfullscreen></iframe>
+            `).show()
+        
+        }
 
             //    var posters = document.getElementsByClassName('poster');
             //    for(i = 0; i < posters.length; i++) {
@@ -146,4 +168,6 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
         })
 
 }
-//});
+
+
+//<iframe class="hide mediabox" src="${ytURL}"></iframe>
