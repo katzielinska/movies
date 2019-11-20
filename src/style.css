@@ -24,7 +24,7 @@ header h1 strong {
   margin: 0 auto;
   max-width: 1000px;
 }
-.wrapper .movies-list {
+.wrapper #movies-list {
   margin: 0 24px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));

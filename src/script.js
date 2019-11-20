@@ -1,101 +1,149 @@
-/*var movies = {
-        "movieList": [{
-                "title": "Isle of Dogs",
-                "id": "dt__kig8PVU&t"
-            },
-            {
-                "title": "Grand Budapest Hotel",
-                "id": "1Fg5iWmQjwk"
-            },
-            {
-                "title": "Moonrise Kingdom",
-                "id": "n2igjYFojUo"
-            },
-            {
-                "title": "Fantastic Mr Fox",
-                "id": "n2igjYFojUo"
-            },
-            {
-                "title": "The Darjeeling Limited",
-                "id": "aO1bYukdvLI&t"
-            },
-            {
-                "title": "The Life Aquatic with Steve Zissou",
-                "id": "UpU0DZXTGA0"
-            },
-            {
-                "title": "The Royal Tenenbaums",
-                "id": "-DNAI9bhBFU"
-            },
-            {
-                "title": "Rushmore",
-                "id": "GxCNDpvGyss"
-            },
-            {
-                "title": "Bottle Rocket",
-                "id": "JJPQ-NnjZR0"
-            }
+var moviesJson = {
+    "movieList": [{
+            "title": "Isle of Dogs",
+            "ytID": "dt__kig8PVU&t",
+            "id": "tt5104604"
+        },
+        {
+            "title": "Grand Budapest Hotel",
+            "ytID": "1Fg5iWmQjwk",
+            "id": "tt5104604",
+        },
+        {
+            "title": "Moonrise Kingdom",
+            "ytID": "n2igjYFojUo",
+            "id": "tt5104604"
+        },
+        {
+            "title": "Fantastic Mr. Fox",
+            "iytID": "n2igjYFojUo",
+            "id": "tt5104604"
+        },
+        {
+            "title": "The Darjeeling Limited",
+            "ytID": "aO1bYukdvLI&t",
+            "id": "tt5104604"
+        },
+        {
+            "title": "The Life Aquatic with Steve Zissou",
+            "ytID": "UpU0DZXTGA0",
+            "id": "tt5104604"
+        },
+        {
+            "title": "The Royal Tenenbaums",
+            "ytID": "-DNAI9bhBFU",
+            "id": "tt5104604"
+        },
+        {
+            "title": "Rushmore",
+            "ytID": "GxCNDpvGyss",
+            "id": "tt5104604"
+        },
+        {
+            "title": "Bottle Rocket",
+            "ytID": "JJPQ-NnjZR0",
+            "id": "tt5104604"
+        }
 
-        ]
+    ]
 
-    },
-    */
+}
+
 
 
 
 
 //the url is our endpoint and contains the data that we want to work with
-let ids = [
-"tt5104604",
-"tt2278388",
-"tt0432283",
-"tt1748122",
-"tt0838221",
-"tt0362270",
-"tt0265666",
-"tt0128445",
-"tt0115734"
-]
+// let id = [
+//     "tt5104604",
+//     "tt2278388",
+//     "tt0432283",
+//     "tt1748122",
+//     "tt0838221",
+//     "tt0362270",
+//     "tt0265666",
+//     "tt0128445",
+//     "tt0115734"
+// ]
 
-//http://www.omdbapi.com/?i=[id]&apikey=59e0530
+let url = "http://www.omdbapi.com/?apikey=59e0530&t=";
 
-//TODO: copy/paste the link into a browser, so that you can see the data you are going to work with
-//The endpoint is passed into the call of the fetch function. The call of the fetch returns a promise
-fetch(url)
-    //when the promise is resolved we extract the JSON part of the response object
-    .then(response => {
-        return response.json();
-        
-    })
-    
-    //then we can work with the JSON data
-    .then(data => {
-        // We iterate through all the objects
-        data.forEach(movie => {
-            //Create a div with a card class
-            const card = document.createElement('div');
-            card.setAttribute('class', 'card');
+let container = document.getElementById('movies-list');
 
-            //Create an h1 and set the text content to the film's title
-            const h1 = document.createElement('h1');
-            //TODO: set the h1 to contain the title of the movie
-            h1.innerHTML = movie.title;
-            // Create a p and set the text content to the film's description
-            const p = document.createElement('p');
-            p.innerHTML = movie.description;
-            //TODO: limit the movie description to 300 chars, and then output it to p
+let moviePage = document.getElementById('moviePage');
 
-            // Each card will contain an h1 and a p
-            card.appendChild(h1);
-            card.appendChild(p);
+for (let i = 0; i < moviesJson.movieList.length; i++) {
 
-            // TODO: Append the cards to the container element
-            container.appendChild(card);
+    let movieURL = url + moviesJson.movieList[i].title.replace(/( )/g, "+");
+
+    //The endpoint is passed into the call of the fetch function. The call of the fetch returns a promise
+
+    fetch(movieURL)
+        //when the promise is resolved we extract the JSON part of the response object
+        .then(response => {
+            return response.json();
+
         })
-    })
-    .catch(err => {
-        // Do something for an error here
-        const errorMessage = document.createElement('marquee');
-        errorMessage.textContent = `Gah, it's not working!`;
-        app.appendChild(errorMessage);
-    })
+
+
+        //then we can work with the JSON data
+        .then(data => {
+            console.log(data);
+
+
+            container.innerHTML += `
+            <article class="movie-card" >
+
+            <div class = "movie-poster">
+            <span class="poster-fill>
+            <img src="${data.Poster}">
+            </span>
+            <span class="poster-featured>
+            <img src="${data.Poster}">
+            </span>
+            </div>
+
+            <div class="movie-details">
+            <h1 class="title"> ${data.Title}</h1>
+            <ul>
+            <li class="movie-year">${data.Year}</li>
+            <li class="movie-genre">${data.Genre}</li>
+            </ul>
+            <p class="plot">${data.Plot} </p>
+            </div>
+
+            <div class="movie-info"> 
+            <p><strong>Directed by:</strong> ${data.Director}  </p>
+            <p><strong>Staring:</strong>${data.Actors} </p>
+            
+            </div>
+            
+            <div>
+              
+              
+            </div>
+          </a>
+          </article>`
+
+         
+
+            //    var posters = document.getElementsByClassName('poster');
+            //    for(i = 0; i < posters.length; i++) {
+            //     posters[i].setAttribute('src', data.Poster);
+            //        } 
+
+            //    var titles = document.getElementsByClassName('title');
+            //    for(i = 0; i < titles.length; i++) {
+            //     titles[i].innerHTML = data.Title;
+            // } 
+
+        })
+        .catch(err => {
+            // Do something for an error here
+            const errorMessage = document.createElement('span');
+            errorMessage.textContent = `Gah, it's not working!`;
+            document.body.appendChild(errorMessage);
+        })
+
+}
+//});
