@@ -13,6 +13,7 @@ $bp-md: 600px;
 $bp-sm: 400px;
 
 
+
 body {
     font: $font-body;
     background-color: $white;
@@ -24,8 +25,6 @@ h2,
 p,
 ul {
     line-height: 1.2;
-
-
     margin-bottom: $base-spacing;
 
 }
@@ -50,7 +49,7 @@ ul {
 
 header {
     background-color: $white;
-    margin: $base-spacing * 6 auto;
+    margin: $base-spacing * 2 auto;
     max-width: 1000px;
 
 
@@ -61,16 +60,21 @@ header {
     }
 
     h2 {
-        font-weight: 300;
+        font-weight: 200;
         margin: 0 $base-spacing;
     }
 
-    @media (min-width:$bp-md) {
-        header {
-            display: flex;
-        }
-    }
+    
+   
 
+}
+
+@media only screen and (min-width:600px) {
+    header {
+      
+        margin: $base-spacing * 6 auto;
+
+    }
 }
 
 
@@ -81,7 +85,7 @@ header {
     #movies-list {
         margin: 0 12px;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(min-content, 350px));
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         grid-column-gap: 32px;
         // grid-auto-flow: row dense;
         //grid-auto-rows: 500px;
@@ -175,11 +179,12 @@ header {
             }
 
 
-            button {
+            a {
                 position: relative;
                 font-size: 4rem;
                 border: none;
                 background: none;
+                cursor: pointer;
 
                 img {
 
@@ -190,8 +195,8 @@ header {
                     border-radius: 50%;
                 }
 
-                img:hover{
-                    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+                img:hover {
+                    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 
                 }
 
@@ -225,3 +230,122 @@ header {
 
 
 }
+
+
+
+.short-animate {
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -ms-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+}
+
+.long-animate {
+    -webkit-transition: .5s .5s ease-in-out;
+    -moz-transition: .5s .5s ease-in-out;
+    -ms-transition: .5s .5s ease-in-out;
+    -o-transition: .5s .5s ease-in-out;
+    transition: .5s .5s ease-in-out;
+}
+
+
+.lightbox {
+    position: fixed;
+    top: 100%;
+    bottom: 100%;
+    left: 100%;
+    right: 100%;
+    background: rgba(0, 0, 0, .7);
+    z-index: 501;
+    opacity: 0;
+
+    iframe {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border:$black;
+
+
+    }
+}
+
+    #lightbox-controls {
+        position: fixed;
+        height: 48px;
+        width: 48px;
+        top: -70px;
+        right: 0;
+        z-index: 502;
+
+    }
+
+    #close-lightbox {
+        display: block;
+        position: absolute;
+        overflow: hidden;
+        height: 50px;
+        width: 50px;
+        text-indent: -5000px;
+        right: 10px;
+        top: 10px;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    #close-lightbox:before {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 0px;
+        width: 3px;
+        left: 24px;
+        top: 0;
+        background: white;
+        border-radius: 2px;
+
+    }
+
+    #close-lightbox:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 0px;
+        height: 3px;
+        top: 24px;
+        left: 0;
+        background: white;
+        border-radius: 2px;
+
+    }
+
+    .lightbox:target {
+        top: 0%;
+        bottom: 0%;
+        left: 0;
+        right: 0;
+        opacity: 1;
+    }
+
+    .lightbox:target iframe {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .lightbox:target~#lightbox-controls {
+        top: 0px;
+    }
+
+    .lightbox:target~#lightbox-controls #close-lightbox:after {
+        width: 50px;
+    }
+
+    .lightbox:target~#lightbox-controls #close-lightbox:before {
+        height: 50px;
+    }

@@ -7,6 +7,10 @@
   "dependencies": {
     "basiclightbox": "^5.0.2",
     "parcel-bundler": "^1.12.4",
+    "perfundo": "^4.0.4",
     "sass": "^1.23.1"
+  },
+  "devDependencies": {
+    "node-sass-magic-importer": "^5.3.2"
   }
 }

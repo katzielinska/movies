@@ -1,3 +1,5 @@
+//An array with movie data
+
 var moviesJson = {
     "movieList": [{
             "title": "Isle of Dogs",
@@ -52,37 +54,25 @@ var moviesJson = {
 
 
 
-
-//the url is our endpoint and contains the data that we want to work with
-// let id = [
-//     "tt5104604",
-//     "tt2278388",
-//     "tt0432283",
-//     "tt1748122",
-//     "tt0838221",
-//     "tt0362270",
-//     "tt0265666",
-//     "tt0128445",
-//     "tt0115734"
-// ]
-
-
-
+//A variable storing the link that will be fetched
 let url = "http://www.omdbapi.com/?apikey=59e0530&t=";
 
-let yt = "https://www.youtube.com/watch?v=";
+
+//A base for the YouTube embed link
+
+let yt = "http://www.youtube.com/embed/";
+
 
 let container = document.getElementById('movies-list');
 
-let moviePage = document.getElementById('moviePage');
-
+//Iterating through each movies in movies.JSON to fetch data
 for (let i = 0; i < moviesJson.movieList.length; i++) {
 
+    //creating a new link for each movie that consists of the base link and added movie title (spaces are replaced by "+")
     let movieURL = url + moviesJson.movieList[i].title.replace(/( )/g, "+");
 
     let ytURL = yt + moviesJson.movieList[i].ytID;
 
-    //The endpoint is passed into the call of the fetch function. The call of the fetch returns a promise
 
     fetch(movieURL)
         //when the promise is resolved we extract the JSON part of the response object
@@ -94,29 +84,33 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
 
         //then we can work with the JSON data
         .then(data => {
-            console.log(data);
 
+        
 
+//Creating a card for each movie and populating the element with data 
             container.innerHTML += `
             <article class="movie-card" >
-            <div class="movie-card-header" >
+
             <div class ="movie-poster">
             <span class="poster-fill">
             <img src="${data.Poster}">
             </span>
-
             <span class="poster-featured">
             <img src="${data.Poster}">
             </span>
             </div>
 
             <div class="trailer">
-            
-            
-            <button class="video" id="videoLink"><img src="images/play-button (2).svg"></button>
-            
+            <a href="#video" class="video wiggle"><img src="images/play-button (2).svg"></a>
+            <div class="lightbox short-animate" id="video">
+            <iframe class="short-animate" src="${ytURL}" allowfulscreen></iframe>
+            </div>
+            <div id="lightbox-controls" >
+             <a id="close-lightbox" href="#!">Close Lightbox</a>
             </div>
             </div>
+            
+           
 
             <div class="movie-details">
             
@@ -130,44 +124,38 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
             <p><strong>Starring: </strong>${data.Actors} </p>
             
             </div>
+           
             </div>
 
+               
             
-            
-            <div>
-              
-              
-            </div>
           </a>
           </article>`
 
-          document.querySelector('button.video').onclick = () => {
 
-            basicLightbox.create(`
-                <iframe width="560" height="315" src="${ytURL}" frameborder="0" allowfullscreen></iframe>
-            `).show()
+         // Creating an iframe that appears when the play button is clicked
+        //   document.querySelector('video').onclick = () => {
+        //       console.log(ytURL);
+          
+        //       basicLightbox.create(`
+        //         <iframe width="560" height="315" src="${ytURL}" frameborder="0" allowfullscreen></iframe>
+        //     `).show()
+        //   }
+
+        })
         
-        }
-
-            //    var posters = document.getElementsByClassName('poster');
-            //    for(i = 0; i < posters.length; i++) {
-            //     posters[i].setAttribute('src', data.Poster);
-            //        } 
-
-            //    var titles = document.getElementsByClassName('title');
-            //    for(i = 0; i < titles.length; i++) {
-            //     titles[i].innerHTML = data.Title;
-            // } 
-
-        })
-        .catch(err => {
-            // Do something for an error here
-            const errorMessage = document.createElement('span');
-            errorMessage.textContent = `Gah, it's not working!`;
-            document.body.appendChild(errorMessage);
-        })
-
 }
 
 
+
+
+
+
+
+
+
+
 //<iframe class="hide mediabox" src="${ytURL}"></iframe>
+
+//<iframe src="${ytURL}"></iframe>
+{/* <iframe src="${ytURL}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
