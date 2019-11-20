@@ -1,5 +1,6 @@
+@import url("https://use.typekit.net/aih5rvy.css");
 body {
-  font: 16px "Futura PT", sans-serif;
+  font: 400 16px futura-pt, sans-serif;
   background-color: #fff;
   color: #1d222c;
 }
@@ -9,6 +10,11 @@ p,
 ul {
   line-height: 1.2;
   margin-bottom: 12px;
+}
+h1,
+h1,
+strong {
+  font: 600 futura-pt, sans-serif;
 }
 p,
 li {
@@ -30,10 +36,9 @@ header {
 header h1 {
   margin: 0 12px;
   font-size: 4rem;
-  font-weight: 600;
 }
 header h2 {
-  font-weight: 200;
+  font-weight: 300;
   margin: 0 12px;
 }
 @media only screen and (min-width: 600px) {
@@ -49,8 +54,8 @@ header h2 {
   margin: 0 12px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-column-gap: 32px;
-  grid-row-gap: 32px;
+  grid-column-gap: 30px;
+  grid-row-gap: 48px;
 }
 .wrapper .movie-card {
   position: relative;
@@ -66,6 +71,12 @@ header h2 {
 .wrapper .movie-card .year {
   font-size: 0.75em;
   color: darkgray;
+}
+.wrapper .movie-card .year li {
+  display: inline;
+}
+.wrapper .movie-card .year li:first-child {
+  margin-right: 12px;
 }
 .wrapper .movie-card .movie-poster {
   position: relative;

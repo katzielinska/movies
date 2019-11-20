@@ -65,6 +65,9 @@ let yt = "http://www.youtube.com/embed/";
 
 let container = document.getElementById('movies-list');
 
+
+
+
 //Iterating through each movies in movies.JSON to fetch data
 for (let i = 0; i < moviesJson.movieList.length; i++) {
 
@@ -72,6 +75,9 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
     let movieURL = url + moviesJson.movieList[i].title.replace(/( )/g, "+");
 
     let ytURL = yt + moviesJson.movieList[i].ytID;
+
+
+
 
 
     fetch(movieURL)
@@ -85,9 +91,11 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
         //then we can work with the JSON data
         .then(data => {
 
-        
+            let date = new Date();
+            let year = date.getFullYear();
+            let age = year - data.Year;
 
-//Creating a card for each movie and populating the element with data 
+            //Creating a card for each movie and populating the element with data 
             container.innerHTML += `
             <article class="movie-card" >
 
@@ -115,7 +123,9 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
             <div class="movie-details">
             
             <h1 class="title"> ${data.Title}</h1>
-            <p class="year"> ${data.Year}</p>
+            <ul class="year"><li>IMDB Rating: ${data.imdbRating}</li><li> ${data.Year} (${age} years old)</li></ul>
+            
+            
             
             <p class="plot">${data.Plot} </p>
 
@@ -133,17 +143,17 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
           </article>`
 
 
-         // Creating an iframe that appears when the play button is clicked
-        //   document.querySelector('video').onclick = () => {
-        //       console.log(ytURL);
-          
-        //       basicLightbox.create(`
-        //         <iframe width="560" height="315" src="${ytURL}" frameborder="0" allowfullscreen></iframe>
-        //     `).show()
-        //   }
+            // Creating an iframe that appears when the play button is clicked
+            //   document.querySelector('video').onclick = () => {
+            //       console.log(ytURL);
+
+            //       basicLightbox.create(`
+            //         <iframe width="560" height="315" src="${ytURL}" frameborder="0" allowfullscreen></iframe>
+            //     `).show()
+            //   }
 
         })
-        
+
 }
 
 
@@ -158,4 +168,15 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
 //<iframe class="hide mediabox" src="${ytURL}"></iframe>
 
 //<iframe src="${ytURL}"></iframe>
-{/* <iframe src="${ytURL}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+{
+    /* <iframe src="${ytURL}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */ }
+
+// <div class="trailer">
+// <a href="#video" class="video wiggle"><img src="images/play-button (2).svg"></a>
+// <div class="lightbox short-animate" id="video">
+// <iframe class="short-animate" src="${ytURL}" allowfulscreen></iframe>
+// </div>
+// <div id="lightbox-controls" >
+//  <a id="close-lightbox" href="#!">Close Lightbox</a>
+// </div>
+// </div>
