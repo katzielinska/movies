@@ -13,7 +13,7 @@ var moviesJson = {
         },
         {
             "title": "Moonrise Kingdom",
-            "ytID": "n2igjYFojUo",
+            "ytID": "_eOI3AamSm8",
             "id": "tt5104604"
         },
         {
@@ -109,9 +109,9 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
             </div>
 
             <div class="trailer">
-            <a href="#video" class="video wiggle"><img src="images/play-button (2).svg"></a>
-            <div class="lightbox short-animate" id="video">
-            <iframe class="short-animate" src="${ytURL}" allowfulscreen></iframe>
+            <a href="#${moviesJson.movieList[i].ytID}" class="video wiggle"><img src="images/play-button (2).svg"></a>
+            <div class="lightbox short-animate" id="${moviesJson.movieList[i].ytID}">
+            <iframe class="short-animate" src="${ytURL}" allowfullscreen></iframe>
             </div>
             <div id="lightbox-controls" >
              <a id="close-lightbox" href="#!">Close Lightbox</a>
@@ -143,40 +143,10 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
           </article>`
 
 
-            // Creating an iframe that appears when the play button is clicked
-            //   document.querySelector('video').onclick = () => {
-            //       console.log(ytURL);
-
-            //       basicLightbox.create(`
-            //         <iframe width="560" height="315" src="${ytURL}" frameborder="0" allowfullscreen></iframe>
-            //     `).show()
-            //   }
+            
 
         })
 
 }
 
 
-
-
-
-
-
-
-
-
-//<iframe class="hide mediabox" src="${ytURL}"></iframe>
-
-//<iframe src="${ytURL}"></iframe>
-{
-    /* <iframe src="${ytURL}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */ }
-
-// <div class="trailer">
-// <a href="#video" class="video wiggle"><img src="images/play-button (2).svg"></a>
-// <div class="lightbox short-animate" id="video">
-// <iframe class="short-animate" src="${ytURL}" allowfulscreen></iframe>
-// </div>
-// <div id="lightbox-controls" >
-//  <a id="close-lightbox" href="#!">Close Lightbox</a>
-// </div>
-// </div>
