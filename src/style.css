@@ -65,7 +65,7 @@ header h2 {
 }
 .wrapper .movie-card .year {
   font-size: 0.75em;
-  color: darkgray;
+  color: #444444;
 }
 .wrapper .movie-card .year li {
   display: inline;
@@ -181,7 +181,7 @@ header h2 {
   bottom: 0;
   border: #030b13;
 }
-#lightbox-controls {
+.lightbox-controls {
   position: fixed;
   height: 48px;
   width: 48px;
@@ -189,7 +189,7 @@ header h2 {
   right: 0;
   z-index: 502;
 }
-#close-lightbox {
+.close-lightbox {
   display: block;
   position: absolute;
   overflow: hidden;
@@ -204,7 +204,7 @@ header h2 {
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-#close-lightbox:before {
+.close-lightbox:before {
   content: "";
   display: block;
   position: absolute;
@@ -215,7 +215,7 @@ header h2 {
   background: white;
   border-radius: 2px;
 }
-#close-lightbox:after {
+.close-lightbox:after {
   content: "";
   display: block;
   position: absolute;
@@ -237,13 +237,13 @@ header h2 {
   max-width: 100%;
   max-height: 100%;
 }
-.lightbox:target ~ #lightbox-controls {
+.lightbox:target ~ .lightbox-controls {
   top: 0px;
 }
-.lightbox:target ~ #lightbox-controls #close-lightbox:after {
+.lightbox:target ~ .lightbox-controls .close-lightbox:after {
   width: 50px;
 }
-.lightbox:target ~ #lightbox-controls #close-lightbox:before {
+.lightbox:target ~ .lightbox-controls .close-lightbox:before {
   height: 50px;
 }
 @media only screen and (min-width: 600px) {
