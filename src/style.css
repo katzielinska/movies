@@ -41,11 +41,6 @@ header h2 {
   font-weight: 300;
   margin: 0 12px;
 }
-@media only screen and (min-width: 600px) {
-  header {
-    margin: 72px auto;
-  }
-}
 .wrapper {
   margin: 0 auto;
   max-width: 1000px;
@@ -250,4 +245,19 @@ header h2 {
 }
 .lightbox:target ~ #lightbox-controls #close-lightbox:before {
   height: 50px;
+}
+@media only screen and (min-width: 600px) {
+  header {
+    margin: 72px auto;
+  }
+  iframe {
+    width: 600px;
+    height: 340px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  iframe {
+    width: 1000px;
+    height: 562px;
+  }
 }

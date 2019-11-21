@@ -80,13 +80,6 @@ header {
 
 }
 
-@media only screen and (min-width:600px) {
-    header {
-
-        margin: $base-spacing * 6 auto;
-
-    }
-}
 
 
 .wrapper {
@@ -367,4 +360,30 @@ header {
 
 .lightbox:target~#lightbox-controls #close-lightbox:before {
     height: 50px;
+}
+
+
+//Media Queries
+
+@media only screen and (min-width:600px) {
+    header {
+
+        margin: $base-spacing * 6 auto;
+
+    }
+
+    iframe{
+        width:600px;
+        height: 340px;
+    }
+
+
+}
+
+
+@media only screen and (min-width:1000px) {
+    iframe{
+        width:1000px;
+        height: 562px;
+    }
 }
