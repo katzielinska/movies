@@ -91,6 +91,8 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
         //then we can work with the JSON data
         .then(data => {
 
+            //Calculating the age of the movie
+
             let date = new Date();
             let year = date.getFullYear();
             let age = year - data.Year;
@@ -143,10 +145,8 @@ for (let i = 0; i < moviesJson.movieList.length; i++) {
           </article>`
 
 
-            
+
 
         })
 
 }
-
-
